@@ -1,0 +1,44 @@
+name: Deploy static site to Pages
+
+# 只发布前端静态文件；server/ 下的后端网关不进入 Pages（Pages 跑不了 Node）
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 组装静态站点
+        run: |
+          mkdir -p _site
+          cp index.html app.js api.js data.js persist.js styles.css _site/
+          touch _site/.nojekyll
+
+      - name: 配置 Pages
+        uses: actions/configure-pages@v5
+
+      - name: 上传产物
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: 部署
+        id: deployment
+        uses: actions/deploy-pages@v4
