@@ -1,0 +1,26 @@
+# ===== 密钥：绝对不能提交 =====
+server/.env
+.env
+*.pem
+*.key
+
+# ===== 依赖与构建产物 =====
+node_modules/
+dist/
+build/
+
+# ===== 本地临时文件 =====
+work/
+outputs/
+*.log
+*.tmp
+
+# ===== 编辑器 / 系统 =====
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ===== 本地会话数据（工具产生，与项目源码无关） =====
+.workbuddy-ai/
+.agents/

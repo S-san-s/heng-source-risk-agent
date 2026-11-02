@@ -1,0 +1,24 @@
+{
+  "name": "hengyuan-risk",
+  "version": "0.1.0",
+  "private": true,
+  "description": "衡源 · 企业风险巡检 —— 腾讯云元宝 SearchPro 驱动的企业外部风险监控台",
+  "type": "commonjs",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node server/server.js",
+    "check": "node --check server/server.js && node --check server/tencent-wsa.js && node --check server/risk-mapper.js && node --check server/company-provider.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "risk-management",
+    "compliance",
+    "supplier-risk",
+    "tencent-cloud",
+    "searchpro"
+  ],
+  "license": "UNLICENSED"
+}
