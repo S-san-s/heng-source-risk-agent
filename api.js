@@ -13,6 +13,7 @@
 const source = {
   probed: false,
   live: false,
+  reachable: false,
   reason: '尚未检测',
   version: '',
 };
@@ -25,6 +26,11 @@ export function isLive() {
   return source.live;
 }
 
+/** 后端网关是否可达（用于决定是否展示 /debug 自测台入口，纯静态托管时该页不存在） */
+export function isBackendReachable() {
+  return source.reachable;
+}
+
 /** 探测后端可用性，结果缓存在模块内 */
 export async function probe() {
   try {
@@ -32,11 +38,13 @@ export async function probe() {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const info = await res.json();
     source.probed = true;
+    source.reachable = true;
     source.live = Boolean(info.credentialsConfigured);
     source.version = info.version || '';
     source.reason = source.live ? '已连接元宝搜索' : '未配置腾讯云密钥';
   } catch {
     source.probed = true;
+    source.reachable = false;
     source.live = false;
     source.reason = '未连接后端网关';
   }

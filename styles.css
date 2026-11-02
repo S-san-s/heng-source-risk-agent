@@ -399,6 +399,7 @@ a.source-row:hover { border-color: var(--teal); background: var(--teal-soft); }
 /* ---------- AI 助手 · 真实检索结果 ---------- */
 .demo-banner { margin: 0 22px 4px; padding: 9px 12px; border-radius: 7px; background: var(--amber-soft); color: #7a5314; font-size: 11px; line-height: 1.6; border: 1px solid #f0dcb6; }
 .demo-banner a { color: #7a5314; font-weight: 700; text-decoration: underline; }
+.demo-banner-note { color: #9a7b45; }
 
 .mock-chip, .live-chip { display: inline-block; margin-left: 7px; padding: 2px 6px; border-radius: 4px; font-size: 9px; font-weight: 700; letter-spacing: .02em; vertical-align: middle; }
 .mock-chip { background: var(--amber-soft); color: var(--amber); }
